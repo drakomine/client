@@ -1,0 +1,348 @@
+/* Theme Variables Definitions */
+:root {
+    /* DARK THEME (Default) */
+    --primary-color: #00bcd4; /* Vibrant Cyan/Teal */
+    --secondary-color: #ffc107; /* Gold/Amber */
+    --background-deep: #0a0e14; /* Deep Blue-Black */
+    --card-surface: #1e2533; /* Elevated Card Surface */
+    --text-light: #f0f4f8; 
+    --text-muted: #a0aec0; 
+    --shadow-color: rgba(0, 0, 0, 0.7);
+    --whatsapp-green: #25d366;
+    --hero-bg-overlay: linear-gradient(to top, var(--background-deep) 0%, rgba(10, 14, 20, 0.8) 100%);
+    --gradient-background: linear-gradient(135deg, #0a0e14 0%, #172033 100%); /* The requested gradient */
+}
+
+/* LIGHT THEME Overrides */
+[data-theme="light"] {
+    --primary-color: #00897b; /* Darker Teal */
+    --secondary-color: #d84315; /* Orange/Red Accent */
+    --background-deep: #ffffff; /* White */
+    --card-surface: #f4f6f9; /* Off-White for Cards */
+    --text-light: #1f2937; /* Dark text */
+    --text-muted: #6b7280; /* Grey text */
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --hero-bg-overlay: linear-gradient(to top, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.9));
+    --gradient-background: #ffffff; 
+}
+
+
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--gradient-background); 
+    color: var(--text-light);
+    line-height: 1.6;
+    scroll-behavior: smooth;
+    transition: background 0.5s ease, color 0.5s ease;
+}
+
+.container {
+    max-width: 1300px; /* Slightly wider container */
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.section-padding {
+    padding: 100px 0;
+    background: var(--gradient-background);
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--secondary-color);
+}
+
+/* -------------------- Animations -------------------- */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    animation: fadeIn 1s ease-out forwards;
+}
+
+/* Staggered fade in for doctor cards */
+.doctor-card:nth-child(odd) { animation-delay: 0.1s; }
+.doctor-card:nth-child(even) { animation-delay: 0.2s; }
+
+
+/* -------------------- Navigation Bar (One Line Layout) -------------------- */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px 0; /* Reduced padding */
+    z-index: 1000;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.navbar.scrolled {
+    background-color: var(--card-surface);
+    box-shadow: 0 4px 15px var(--shadow-color);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo a {
+    font-family: 'Playfair Display', serif; /* Use a more elegant font for logo */
+    font-size: 1.5em; /* Smaller logo */
+    font-weight: 700;
+    color: var(--secondary-color);
+}
+
+.nav-controls {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    margin-right: 20px; /* Space before toggle button */
+}
+
+.nav-links a {
+    font-weight: 600;
+    padding: 5px 0;
+    position: relative;
+    color: var(--text-light);
+}
+.nav-links a:hover {
+    color: var(--primary-color);
+}
+
+/* Theme Toggle Button */
+.theme-toggle-button {
+    background: none;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1em;
+    transition: all 0.3s ease;
+}
+
+.theme-toggle-button:hover {
+    background-color: var(--primary-color);
+    color: var(--background-deep);
+    transform: rotate(360deg);
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 1.5em;
+    cursor: pointer;
+    color: var(--primary-color);
+    margin-left: 15px;
+}
+
+/* -------------------- Home/Hero Section -------------------- */
+.hero-section {
+    height: 90vh; /* Slightly smaller hero */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: var(--hero-bg-overlay), url('images/hero_bg_placeholder.jpg') no-repeat center center/cover;
+    background-attachment: fixed;
+    position: relative;
+}
+
+.main-heading {
+    font-size: 3.5em; /* Smaller heading */
+    color: var(--text-light);
+    margin-bottom: 5px;
+    text-shadow: 0 0 10px rgba(0, 188, 212, 0.3);
+}
+
+.tagline {
+    font-size: 1.1em;
+    color: var(--text-muted);
+    margin-bottom: 30px;
+    font-weight: 400;
+}
+
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--whatsapp-green);
+    color: #000; /* Force dark text on green button */
+    padding: 12px 30px; /* Smaller button */
+    border-radius: 50px;
+    font-size: 1em;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+.cta-button:hover {
+    background-color: #1aae55;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(37, 211, 102, 0.4);
+    color: #000;
+}
+
+/* -------------------- Doctors Section -------------------- */
+.section-heading {
+    font-size: 2.8em;
+    color: var(--primary-color);
+}
+
+.doctor-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.doctor-card {
+    background-color: var(--card-surface);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px var(--shadow-color);
+    border-left: 4px solid var(--primary-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.doctor-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px var(--shadow-color), 0 0 10px var(--primary-color);
+}
+
+.card-header h3 {
+    font-size: 1.4em;
+    color: var(--secondary-color);
+    border-bottom: none;
+}
+
+.specialization-tag {
+    font-size: 0.95em;
+    color: var(--primary-color);
+}
+
+.degrees {
+    font-size: 0.85em;
+    color: var(--text-muted);
+}
+
+.card-footer {
+    padding-top: 10px;
+}
+
+.book-button {
+    font-size: 0.8em;
+}
+
+/* -------------------- Location & Gallery -------------------- */
+.map-wrapper {
+    border: 5px solid var(--card-surface);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.shadow-effect {
+    box-shadow: 0 10px 30px var(--shadow-color);
+}
+
+.image-grid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.gallery-item {
+    border-radius: 8px;
+    box-shadow: 0 4px 10px var(--shadow-color);
+}
+
+.gallery-item img {
+    height: 200px;
+}
+
+/* -------------------- Contact Section -------------------- */
+.contact-info-box {
+    padding: 30px;
+    background-color: var(--card-surface);
+    border-radius: 10px;
+}
+.contact-detail a {
+    color: var(--secondary-color);
+}
+
+/* -------------------- Footer -------------------- */
+footer {
+    background-color: var(--card-surface);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+
+/* -------------------- Responsiveness -------------------- */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background-color: var(--card-surface);
+        box-shadow: 0 4px 8px var(--shadow-color);
+        padding: 20px 0;
+        border-bottom-left-radius: 10px;
+        z-index: 999;
+    }
+    .nav-links.active {
+        display: flex;
+    }
+    .nav-links li {
+        text-align: center;
+        margin: 10px 0;
+    }
+    
+    .menu-toggle {
+        display: block;
+    }
+    .theme-toggle-button {
+        margin-right: 15px;
+    }
+
+    .main-heading {
+        font-size: 2.5em;
+    }
+    .cta-button {
+        padding: 10px 20px;
+    }
+    .section-heading {
+        font-size: 2em;
+    }
+    .doctor-grid {
+        grid-template-columns: 1fr;
+    }
+    .card-footer {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
